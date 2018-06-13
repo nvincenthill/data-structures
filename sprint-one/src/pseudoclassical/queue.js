@@ -6,9 +6,10 @@ var Queue = function() {
   
 };
 
+// add an item to the queue 
 Queue.prototype.enqueue = function(value) {
   for (let i = 0; i < this.length; i++) {
-    this.storage[i + 1] = this.storage[i]
+    this.storage[i + 1] = this.storage[i];
   }
   this.length ++;
   this.storage[0] = value;
