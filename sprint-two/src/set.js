@@ -1,13 +1,13 @@
 // Specification:
 
-// Inputs
-// Outputs
-// Constraints
-// Edge Cases
+// Inputs - none
+// Outputs - object
+// Constraints - time complexity?
+// Edge Cases - ???
   
-// Justification - 
+// Justification - To create a Set.
 
-// Explanation -
+// Explanation - Sets contain unique values in no particular order.
 
 // *** WHITE BOARD FIRST *** 
 
@@ -17,21 +17,23 @@
 
 var Set = function() {
   var set = Object.create(setPrototype);
-  set._storage = null; // fix me
+  set.dataStorage = {};
   return set;
 };
 
 var setPrototype = {};
 
+// - O(1) time complexity
 setPrototype.add = function(item) {
+  this.dataStorage[item] = true;
 };
 
+// - O(1) time complexity
 setPrototype.contains = function(item) {
+  return this.dataStorage.hasOwnProperty(item);
 };
 
+// - O(1) time complexity
 setPrototype.remove = function(item) {
+  delete this.dataStorage[item];
 };
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
