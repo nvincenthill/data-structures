@@ -15,11 +15,13 @@
 
 // *** WHEN ALL ABOVE ARE FULLY COMPLETE THEN TYPE SOME CODE ***
 
+// create a linked list
 var LinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
 
+  // add a node to tail of list - O(1) time complexity
   list.addToTail = function(value) {
     let node = Node(value);
     if (list.head === null) {
@@ -30,6 +32,7 @@ var LinkedList = function() {
     list.tail = node;
   };
 
+  // remove the node at the head - O(1) time complexity
   list.removeHead = function() {
     let formerHead = list.head.value;
     if (list.head !== null) {
@@ -41,6 +44,7 @@ var LinkedList = function() {
     return formerHead;
   };
 
+  // check to see if value is contained in list - O(n) time complexity
   list.contains = function(target) {
     let currentNode = list.head;
     while (currentNode !== null) {
@@ -55,6 +59,7 @@ var LinkedList = function() {
   return list;
 };
 
+// create a node
 var Node = function(value) {
   var node = {};
 
@@ -63,7 +68,3 @@ var Node = function(value) {
 
   return node;
 };
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
