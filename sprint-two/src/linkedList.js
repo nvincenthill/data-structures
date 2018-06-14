@@ -1,13 +1,13 @@
 // Specification:
 
-// Inputs
-// Outputs
-// Constraints
-// Edge Cases
+// Inputs - none
+// Outputs - object
+// Constraints - time complexity?
+// Edge Cases - ???
   
-// Justification - 
+// Justification - To create a linked list data structure 
 
-// Explanation -
+// Explanation - Data structure storing a sequence of elements. Each element is a node that contains a data value and a reference to the next element.
 
 // *** WHITE BOARD FIRST *** 
 
@@ -21,14 +21,37 @@ var LinkedList = function() {
   list.tail = null;
 
   list.addToTail = function(value) {
+    let node = Node(value);
+    if (list.head === null) {
+      list.head = node;
+    } else {
+      list.tail.next = node;
+    }
+    list.tail = node;
   };
 
   list.removeHead = function() {
+    let formerHead = list.head.value;
+    if (list.head !== null) {
+      list.head = list.head.next;
+      if (list.head === null) {
+        list.tail = null;
+      }
+    }   
+    return formerHead;
   };
 
   list.contains = function(target) {
+    let currentNode = list.head;
+    while (currentNode !== null) {
+      if (target === currentNode.value) {
+        return true;
+      }
+      currentNode = currentNode.next;
+    }
+    return false;
   };
-
+  
   return list;
 };
 
