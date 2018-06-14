@@ -3,7 +3,6 @@ var Stack = function() {
   // but try not not reference your old code in writing the new style.
   this.storage = {};
   this.key = 0;
-  
 };
 
 Stack.prototype.push = function(value) {
