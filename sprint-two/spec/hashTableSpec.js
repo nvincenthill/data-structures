@@ -48,7 +48,7 @@ describe('hashTable', function() {
   });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
-  xit ('should double in size when needed', function() {
+  it ('should double in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0];
       var lastName = person[1];
@@ -58,7 +58,7 @@ describe('hashTable', function() {
     expect(hashTable._limit).to.equal(16);
   });
 
-  xit ('should halve in size when needed', function() {
+  it ('should halve in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0];
       var lastName = person[1];
@@ -73,4 +73,38 @@ describe('hashTable', function() {
     hashTable.remove('Mr.');
     expect(hashTable._limit).to.equal(8);
   });
+  
+  // Student-generated tests
+  it ('should correctly remove elements after collisions', function() {
+    var v1 = 'val1';
+    var v2 = 'val2';
+    var oldHashFunction = window.getIndexBelowMaxForKey;
+    window.getIndexBelowMaxForKey = function() { return 0; };
+    hashTable.insert(v1, v1);
+    hashTable.insert(v2, v2);
+    hashTable.remove(v2);
+    expect(hashTable.retrieve(v1)).to.equal(v1);
+    window.getIndexBelowMaxForKey = oldHashFunction;
+  });
+  
+  it ('should increment number of stored items correctly', function() {
+    var v1 = 'val1';
+    for (let i = 0; i < 10; i++) {
+      hashTable.insert(v1, v1);
+    }
+    expect(hashTable._limit).to.equal(8);
+  });
+  
+  xit ('should decrement number of stored items correctly', function() {
+    var arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+    var v2 = 'val2';
+    for (let i = 0; i < 10; i++) {
+      hashTable.insert(arr[i], arr[i]);
+    }
+    for (let i = 0; i < 6; i++) {
+      hashTable.remove('z');
+    }
+    expect(hashTable._limit).to.equal(16);
+  });
+  
 });
