@@ -45,9 +45,11 @@ Graph.prototype.removeNode = function(node) {
   }
 };
 
-// Connects two nodes in a graph by adding an edge between them - O(1) time complexity
+// Connects two nodes in a graph by adding an edge between them - O(n) time complexity
 Graph.prototype.addEdge = function(fromNode, toNode) {
-  this.edges.push([fromNode, toNode]);
+  if (this.contains(fromNode) && this.contains(toNode)) {
+    this.edges.push([fromNode, toNode]);
+  }
 };
 
 // Returns a boolean indicating whether two specified nodes are connected

@@ -25,15 +25,15 @@ var setPrototype = {};
 
 // - O(1) time complexity
 setPrototype.add = function(item) {
-  this.dataStorage[item] = true;
+  this.dataStorage[JSON.stringify(item)] = true;
 };
 
 // - O(1) time complexity
 setPrototype.contains = function(item) {
-  return this.dataStorage.hasOwnProperty(item);
+  return this.dataStorage.hasOwnProperty(JSON.stringify(item));
 };
 
 // - O(1) time complexity
 setPrototype.remove = function(item) {
-  delete this.dataStorage[item];
+  delete this.dataStorage[JSON.stringify(item)];
 };

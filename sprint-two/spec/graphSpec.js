@@ -68,4 +68,13 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+  
+  // student created tests
+  
+  it('should not allow adding an edge with a non-existent node', function() {
+    graph.addNode(1);
+    graph.addNode(2);
+    graph.addEdge(1, 3);
+    expect(graph.hasEdge(1, 3)).to.equal(false);
+  });
 });
