@@ -95,14 +95,14 @@ describe('hashTable', function() {
     expect(hashTable._limit).to.equal(8);
   });
   
-  xit ('should decrement number of stored items correctly', function() {
+  it ('should decrement number of stored items correctly', function() {
     var arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-    var v2 = 'val2';
+    var v2 = 'z';
     for (let i = 0; i < 10; i++) {
       hashTable.insert(arr[i], arr[i]);
     }
     for (let i = 0; i < 6; i++) {
-      hashTable.remove('z');
+      hashTable.remove(v2);
     }
     expect(hashTable._limit).to.equal(16);
   });
