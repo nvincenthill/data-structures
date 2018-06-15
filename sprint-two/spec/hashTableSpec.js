@@ -47,7 +47,6 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
-  // (Advanced! Remove the extra "x" when you want the following tests to run)
   it ('should double in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0];

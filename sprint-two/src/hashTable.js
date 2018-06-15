@@ -65,10 +65,10 @@ HashTable.prototype.remove = function(k) {
   if (this._storage.get(index)) {
     this._count--;
     this._storage.set(index, undefined);
+  } 
   if (this._count < this._limit * 0.25 && this._limit > 8) {
     this.resize(this._limit / 2);  
   }  
-  } 
 };
 
 // Get an index correctly - O(n) time complexity

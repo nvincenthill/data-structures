@@ -17,7 +17,7 @@
 
 var Set = function() {
   var set = Object.create(setPrototype);
-  set.dataStorage = {};
+  set._dataStorage = {};
   return set;
 };
 
@@ -25,15 +25,15 @@ var setPrototype = {};
 
 // - O(1) time complexity
 setPrototype.add = function(item) {
-  this.dataStorage[JSON.stringify(item)] = true;
+  this._dataStorage[JSON.stringify(item)] = true;
 };
 
 // - O(1) time complexity
 setPrototype.contains = function(item) {
-  return this.dataStorage.hasOwnProperty(JSON.stringify(item));
+  return this._dataStorage.hasOwnProperty(JSON.stringify(item));
 };
 
 // - O(1) time complexity
 setPrototype.remove = function(item) {
-  delete this.dataStorage[JSON.stringify(item)];
+  delete this._dataStorage[JSON.stringify(item)];
 };
