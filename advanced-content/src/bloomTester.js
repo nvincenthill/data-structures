@@ -5,7 +5,7 @@ let bloomTester = function() {
   let numberOfItems = numberOfSlots / 9;
   let numberOfTests = 10000;
   let falsePositiveRates = [];
-  
+  // let approximateRate = (1 - Math.E^(-((numberOfHashes * numberOfTests)/numberOfSlots)))^numberOfHashes;
   for (let i = 0; i < numberOfTests; i++) {
     let bFilter = new BloomFilter(numberOfSlots, numberOfHashes);
     let falsePositives = 0;
@@ -24,6 +24,7 @@ let bloomTester = function() {
   let result = (average(falsePositiveRates) * 100).toFixed(4);
   console.log(`You ran ${numberOfTests} tests with ${numberOfSlots} slots and ${numberOfHashes} hashes`);
   console.log(`The tests produced an average false positive rate of ${result}%`);
+  // console.log(`The theoretical approximation is ${approximateRate}`);
 };
 
 let average = function(vals) {

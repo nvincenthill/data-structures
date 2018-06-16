@@ -7,7 +7,10 @@
   
 // Justification - To create a Bloom filter.
 
-// Explanation - A Bloom filter is a space-efficient probabilistic data structure
+// Explanation - A Bloom filter is a space-efficient probabilistic data structure. The classic example is using bloom filters to reduce expensive disk
+// (or network) lookups for non-existent keys. 
+// Bloom filters are being used by NoSQL database engines, 
+// especially by key/value stores in order to efficiently query data stores.
 
 // *** WHITE BOARD FIRST *** 
 
