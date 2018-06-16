@@ -5,11 +5,9 @@
 // Constraints - time complexity?
 // Edge Cases - ???
   
-// Justification - To create a tree data structure 
+// Justification - To create a binary search tree
 
-// Explanation - A tree is a hierarchical data structure consisting of a node (potentially) with children.
-// The children are trees unto themselves, that is, nodes with (potential) children.
-// For this reason the tree is referred to as a recursive data structure.
+// Explanation -
 
 // *** WHITE BOARD FIRST *** 
 
@@ -17,35 +15,55 @@
 
 // *** WHEN ALL ABOVE ARE FULLY COMPLETE THEN TYPE SOME CODE ***
 
-// create a tree
-var Tree = function(value) {
-  var newTree = {};
-  newTree.value = value;
-
-  Object.assign(newTree, treeMethods);
-  newTree.children = [];
-
-  return newTree;
-};
-
-var treeMethods = {
+class BinarySearchTree {
   
-  // add a tree to of children of a tree - O(1) time complexity
-  addChild: function(value) {
-    var child = Tree(value);
-    this.children.push(child);
-  },
-
-  // check if a value is contained in the tree - O(n) time complexity
-  contains: function(target) {
-    if (target === this.value) {
-      return true;
-    }
-    for (var i = 0; i < this.children.length; i++) {
-      if (this.children[i].contains(target)) {
-        return true;
+  constructor(value) {
+    this.left = null;
+    this.right = null;
+    this.value = value;
+  }
+  
+  // Insert a new value into the tree in the correct position - O(log n) time complexity
+  insert(value) {
+    if (value < this.value) {
+      if (this.left === null) {
+        this.left = new BinarySearchTree(value);
+      } else {
+        this.left.insert(value);
+      }
+    } else if (value > this.value) {
+      if (this.right === null) {
+        this.right = new BinarySearchTree(value);
+      } else {
+        this.right.insert(value);
       }
     }
+  }
+  
+  // Check if value is contained in tree - O(log n) time complexity
+  contains(value) {
+    if (value === this.value) {
+      return true;
+    }
+    if (value < this.value && this.left) {
+      return this.left.contains(value);
+    }
+    if (value > this.value && this.right) {
+      return this.right.contains(value);
+    }
+    
     return false;
   }
-};
+  
+  // Call function on every value in the tree - O(n) time complexity
+  depthFirstLog(cb) {
+    cb(this.value);
+    if (this.left) {
+      this.left.depthFirstLog(cb); 
+    }
+    if (this.right) {
+      this.right.depthFirstLog(cb); 
+    }
+  }
+  
+}
