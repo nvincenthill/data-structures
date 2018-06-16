@@ -16,27 +16,27 @@
 // *** WHEN ALL ABOVE ARE FULLY COMPLETE THEN TYPE SOME CODE ***
 
 // Instantiate a bloom filter
-var BloomFilter = function(m, k) {
-  this.bits = new Array(m);
-  this.hashes = generateHashFunctions(k, m);
-};
+// var DoublyLinkedList = function(m, k) {
+//   this.bits = new Array(m);
+//   this.hashes = generateHashFunctions(k, m);
+// };
 
-// ???  - O(?) time complexity
-BloomFilter.prototype.addItem = function(item) {
-  for (var i = 0; i < this.hashes.length; i++) {
-    this.bits[this.hashes[i](JSON.stringify(item))] = 1;
-  }
-};
+// // ???  - O(?) time complexity
+// BloomFilter.prototype.addItem = function(item) {
+//   for (var i = 0; i < this.hashes.length; i++) {
+//     this.bits[this.hashes[i](JSON.stringify(item))] = 1;
+//   }
+// };
 
-// ???  - O(?) time complexity
-BloomFilter.prototype.query = function(item) {
-  for (var i = 0; i < this.hashes.length; i++) {
-    if (!this.bits[this.hashes[i](JSON.stringify(item))]) {
-      return false;
-    }
-  }
-  return true;
-};
+// // ???  - O(?) time complexity
+// BloomFilter.prototype.query = function(item) {
+//   for (var i = 0; i < this.hashes.length; i++) {
+//     if (!this.bits[this.hashes[i](JSON.stringify(item))]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
 
 
 

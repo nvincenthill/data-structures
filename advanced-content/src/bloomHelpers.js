@@ -11,7 +11,7 @@ let fnv32a = function(init, limit) {
 };
 
 // ???  - O(?) time complexity
-let generateHashFunctions = function(k, m) {
+let generateHashFunctions = function(m, k) {
   let hashes = [];
   let init = Math.floor(10000 * Math.random());
   for (let i = init; i < init + k; i++) {

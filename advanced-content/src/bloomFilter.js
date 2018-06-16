@@ -18,25 +18,22 @@
 // Instantiate a bloom filter
 var BloomFilter = function(m, k) {
   this.bits = new Array(m);
-  this.hashes = generateHashFunctions(k, m);
+  this.hashes = generateHashFunctions(m, k);
 };
 
 // ???  - O(?) time complexity
-BloomFilter.prototype.addItem = function(item) {
-  for (var i = 0; i < this.hashes.length; i++) {
+BloomFilter.prototype.add = function(item) {
+  for (let i = 0; i < this.hashes.length; i++) {
     this.bits[this.hashes[i](JSON.stringify(item))] = 1;
   }
 };
 
 // ???  - O(?) time complexity
 BloomFilter.prototype.query = function(item) {
-  for (var i = 0; i < this.hashes.length; i++) {
+  for (let i = 0; i < this.hashes.length; i++) {
     if (!this.bits[this.hashes[i](JSON.stringify(item))]) {
       return false;
     }
   }
   return true;
 };
-
-
-
