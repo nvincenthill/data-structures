@@ -69,4 +69,4 @@ let generateString = function() {
 };
 
 // call the tester
-// bloomTester();
+bloomTester();
