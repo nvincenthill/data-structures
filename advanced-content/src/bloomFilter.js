@@ -24,14 +24,14 @@ var BloomFilter = function(m, k) {
   this.hashes = generateHashFunctions(m, k);
 };
 
-// ???  - O(?) time complexity
+// ???  - O(k) time complexity
 BloomFilter.prototype.add = function(item) {
   for (let i = 0; i < this.hashes.length; i++) {
     this.bits[this.hashes[i](JSON.stringify(item))] = 1;
   }
 };
 
-// ???  - O(?) time complexity
+// ???  - O(k) time complexity
 BloomFilter.prototype.query = function(item) {
   for (let i = 0; i < this.hashes.length; i++) {
     if (!this.bits[this.hashes[i](JSON.stringify(item))]) {

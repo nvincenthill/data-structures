@@ -5,7 +5,6 @@ let bloomTester = function() {
   let numberOfItems = numberOfSlots / 9;
   let numberOfTests = 10000;
   let falsePositiveRates = [];
-  // let approximateRate = (1 - Math.E^(-((numberOfHashes * numberOfTests)/numberOfSlots)))^numberOfHashes;
   for (let i = 0; i < numberOfTests; i++) {
     let bFilter = new BloomFilter(numberOfSlots, numberOfHashes);
     let falsePositives = 0;
@@ -22,9 +21,14 @@ let bloomTester = function() {
     falsePositiveRates.push(falsePositives / Object.keys(testItems).length);
   }
   let result = (average(falsePositiveRates) * 100).toFixed(4);
+  let approximateRate = (Math.pow(1 - Math.pow(Math.E, 
+    (-1 * numberOfHashes * numberOfItems) / numberOfSlots), numberOfHashes) * 100).toFixed(4);
+  let theorecticalMax = (Math.pow(1 - Math.pow(Math.E, 
+    (-1 * numberOfHashes * (numberOfItems + 0.5)) / (numberOfSlots - 1)), numberOfHashes) * 100).toFixed(4);
   console.log(`You ran ${numberOfTests} tests with ${numberOfSlots} slots and ${numberOfHashes} hashes`);
   console.log(`The tests produced an average false positive rate of ${result}%`);
-  // console.log(`The theoretical approximation is ${approximateRate}`);
+  console.log(`The theoretical approximation rate is ${approximateRate}%`);
+  console.log(`The theoretical max rate is ${theorecticalMax}%`);
 };
 
 let average = function(vals) {
@@ -65,4 +69,4 @@ let generateString = function() {
 };
 
 // call the tester
-bloomTester();
+// bloomTester();
