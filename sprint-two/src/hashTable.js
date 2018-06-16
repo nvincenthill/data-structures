@@ -23,26 +23,10 @@ let HashTable = function() {
   this._storage = LimitedArray(this._limit);
 };
 
-// Handle limit augmentation - O(n) time complexity
-HashTable.prototype.resize = function(newSize) {
-  let temp = [];
-  for (let i = 0; i < this._limit; i++) {
-    if (this._storage[i]) {
-      temp.push(this._storage[i]);
-    }
-  }
-  this._limit = newSize;
-  this._count = 0;
-  this._storage = LimitedArray(this._limit);
-  for (let i = 0; i < temp.length; i++) {
-    this.insert(temp[i].key, temp[i].value);
-  }
-};
-
 // Insert key-value pair into hash table - worst O(n) average O(1) time complexity
 HashTable.prototype.insert = function(k, v) {
   if (this._count >= 0.75 * this._limit) {
-    this.resize(this._limit * 2);  
+    this._resize(this._limit * 2);  
   }
   let index = this.handleIndex(k);
   if (!this._storage.get(index)) {
@@ -67,8 +51,24 @@ HashTable.prototype.remove = function(k) {
     this._storage.set(index, undefined);
   } 
   if (this._count < this._limit * 0.25 && this._limit > 8) {
-    this.resize(this._limit / 2);  
+    this._resize(this._limit / 2);  
   }  
+};
+
+// Handle limit augmentation - O(n) time complexity
+HashTable.prototype._resize = function(newSize) {
+  let temp = [];
+  for (let i = 0; i < this._limit; i++) {
+    if (this._storage[i]) {
+      temp.push(this._storage[i]);
+    }
+  }
+  this._limit = newSize;
+  this._count = 0;
+  this._storage = LimitedArray(this._limit);
+  for (let i = 0; i < temp.length; i++) {
+    this.insert(temp[i].key, temp[i].value);
+  }
 };
 
 // Get an index correctly - O(n) time complexity
